@@ -1,0 +1,88 @@
+<p-toast></p-toast>
+<div class="admin-page" >
+  <p-card [header]=" 'View Order' " subheader="You can edit order status here ">
+    <p-fieldset legend="Order Details" [toggleable]="true">
+      <div class="p-grid col-12" style="display: inline-flex;">
+        <div class="col-4">
+          <h5>Order Id</h5>
+          <p>{{order._id}}</p>
+        </div>
+
+        <div class="col-4">
+          <h5>Order Date</h5>
+          <p>{{order.dateOrdered | date: 'short'}}</p>
+        </div>
+
+        <div class="col-4">
+          <h5>Order Status</h5>
+          <p-dropdown
+          [options]="orderStatuses"
+          optionLabel ="name"
+          optionValue ="id"
+          (onChange)="onStatusChange($event)"
+          [(ngModel)]="selectedStatus"
+            >
+          </p-dropdown>
+        </div>
+      </div>
+
+      <div class="p-grid col-12" style="display: inline-flex;">
+        <div class="col-4">
+          <h5>Order Total Price</h5>
+          <p>{{order.totalPrice | currency}}</p>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Order Items" [toggleable]="true">
+      <div class="p-grid col-12" style="display: inline-flex;">
+        <div class="col-2" style="font-weight: bold;">Name</div>
+        <div class="col-2" style="font-weight: bold;">Brand</div>
+        <div class="col-2" style="font-weight: bold;">Category</div>
+        <div class="col-2" style="font-weight: bold;">Price</div>
+        <div class="col-2" style="font-weight: bold;">Quantity</div>
+        <div class="col-2" style="font-weight: bold;">Subtotal</div>
+      </div>
+      <hr>
+      <div class="p-grid col-12" style="display: inline-flex;" *ngFor="let orderitem of order.orderItems">
+        <div class="col-2">{{orderitem.product.name}}</div>
+        <div class="col-2">{{orderitem.product.brand}}</div>
+        <div class="col-2">{{orderitem.product.category}}</div>
+        <div class="col-2">{{orderitem.product.price | currency}}</div>
+        <div class="col-2">{{orderitem.quantity.quantity}}</div>
+        <div class="col-2">{{orderitem.product.price * orderitem.quantity | currency}}</div>
+      </div>
+      <hr>
+      <div class="p-grid col-12" style="display:inline-flex; offset: 8; margin-left: 65.5%; color: green; font-weight: 900; font-size: larger;">
+        <div class="col-2">Total Price</div>
+        <div class="col-2">{{order.totalPrice | currency}}</div>
+      </div>
+    </p-fieldset>
+    <p-fieldset legend="Order Address" [toggleable]="true">
+      <div class="p-grid col-12" style="display: inline-flex;">
+        <div class="col-4">
+          <h5>Order Address</h5>
+          <p>
+            {{order.shippingAddress1}}<br>
+            {{order.shippingAddress2}}<br>
+            {{order.zip}}, {{order.city}}<br>
+            {{order.country}}
+          </p>
+        </div>
+        <div class="col-4">
+          <h5>Customer Info</h5>
+          <p>{{order.user.name}}</p>
+        </div>
+        <div class="col-4">
+          <h5>Contact Info</h5>
+          <p>
+            {{order.phone}}
+          </p>
+        </div>
+      </div>
+    </p-fieldset>
+  </p-card>
+</div>
+
+
+<!-- *ngIf="order" -->

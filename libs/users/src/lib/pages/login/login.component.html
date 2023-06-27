@@ -1,0 +1,56 @@
+<div class="login-register">
+  <div class="login-register-panel">
+    <div class="p-grid col-12" style="display: inline-flex">
+      <div class="col-6 panel-image">
+        <img
+          src="https://images.pexels.com/photos/3125171/pexels-photo-3125171.jpeg?auto=compress&cs=tinysrgb&w=600"
+          style="width: 100%; margin: 0; height: 495px; object-fit: cover"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="col-6 p-3">
+        <h3 style="margin-left: 5px;">Welcome</h3>
+        <h2 style="margin-left: 5px;">Login Page</h2>
+        <form [formGroup]="loginFormGroup">
+          <div class="p-grid mt-5">
+            <div class="col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                  <i class="pi pi-user"></i>
+                </span>
+                <input type="text" formControlName="email" id="email" pInputText placeholder="Email" />
+              </div>
+              <small *ngIf="loginForm.email.invalid && isSubmitted" class="p-error">
+                <span *ngIf="loginForm.email.errors.required">Email is required</span>
+                <span *ngIf="loginForm.email.errors.email">Email is invalid</span>
+              </small>
+            </div>
+            <div class="col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                  <i class="pi pi-lock"></i>
+                </span>
+                <input type="password" formControlName="password" id="password" pInputText placeholder="Password" />
+              </div>
+            <small *ngIf="loginForm.password.invalid && isSubmitted" class="p-error">password is required</small>
+            </div>
+            <div class="col-12">
+              <button
+                style="width: 100%; background-color: orangered !important;"
+                pButton
+                pRipple
+                label="Submit"
+                class="p-button-primary"
+                (click)="onSubmit()"
+              ></button>
+            </div>
+            <div class="col-12" *ngIf="isSubmitted && authError">
+              <small class="p-error">{{authMessage}}</small>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

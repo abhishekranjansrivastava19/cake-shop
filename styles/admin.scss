@@ -1,0 +1,29 @@
+@import '~normalize.css/normalize.css';
+@import './base/colours.scss';
+@import './base/fonts.scss';
+@import './base/mixins.scss';
+@import './base/configuration.scss';
+
+
+// libraries
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css');
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeflex/primeflex.css';
+
+
+// shared
+
+@import './apps/admin/shell.scss';
+@import './apps/shop/shared/header.scss';
+
+
+// libs
+@import './libs/ui/ui.scss';
+@import './libs/user/login-register.scss';
+
+
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';

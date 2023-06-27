@@ -1,0 +1,36 @@
+header {
+  margin-bottom: 25px;
+  font-family:'Times New Roman', Times, serif;
+  font-weight: 400;
+  .logo {
+    img {
+      width: 160px;
+    }
+  }
+
+  .seacrh, .navigation, .tools {
+    padding-top: 20px;
+
+    .pi {
+      margin-right: 10px;
+    }
+  }
+}
+
+.nav {
+  li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: 600;
+
+    a {
+      color: var(--surface-600);
+      cursor: pointer;
+
+      &:hover {
+        color: #ff3a00;
+      }
+    }
+  }
+}

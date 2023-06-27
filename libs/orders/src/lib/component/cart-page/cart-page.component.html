@@ -1,0 +1,61 @@
+<div class="cart-page">
+  <div class="grid">
+    <div class="col-8">
+      <div class="mt-3">
+        <p-button
+          class="cart-page-button"
+          label="Continue shopping"
+          icon="pi pi-arrow-left"
+          (onClick)="backToShop()"
+        ></p-button>
+      </div>
+      <div class="mt-4">
+        <h5>My Cart: {{ cartCount }} item(s)</h5>
+      </div>
+      <div class="cart-shipping mt-2">
+        Shipping after the payment, Delivery time: 1 to 4 working days.
+      </div>
+      <div class="cart-item mt-3" *ngFor="let cartItem of cartItemsDetailed">
+        <div class="grid p-fluid">
+          <div class="col-2 cart-item-image">
+            <img [src]="cartItem.product?.image" alt="" />
+          </div>
+          <div class="col-7">
+            <div class="cart-item-name">{{ cartItem.product?.name }}</div>
+            <div class="cart-item-price">
+              {{ cartItem.product?.price | currency }}
+            </div>
+            <div class="cart-item-remove">
+              <p-button
+                icon="pi pi-trash"
+                (onClick)="deleteCartItem(cartItem)"
+              ></p-button>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="p-field cart-item-quantity">
+              <p-inputNumber
+                [(ngModel)]="cartItem.quantity"
+                mode="decimal"
+                [showButtons]="true"
+                [min]="1"
+                [max]="100"
+                inputId="cartItem.product?.id"
+                (onInput)="updateCartItemQuantity($event, cartItem)"
+              ></p-inputNumber>
+            </div>
+            <div class="cart-item-subtotal">
+              Subtotal:
+              <span class="cart-item-subtotal-value">{{
+                cartItem.product?.price * cartItem.quantity | currency
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 order-summary">
+      <bluebits-order-summary></bluebits-order-summary>
+    </div>
+  </div>
+</div>
