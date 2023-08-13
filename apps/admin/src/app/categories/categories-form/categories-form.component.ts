@@ -21,6 +21,9 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
   editmode = false;
 
   currentCategoryId: string;
+  imageDisplay: string | ArrayBuffer;
+  imagesDisplay: string[] | ArrayBuffer;
+
 
   constructor(
     private messageService: MessageService,
@@ -44,6 +47,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
       this.endsubs$.complete();
   }
 
+
+
   onSubmit() {
     this.isSubmitted = true;
     if (this.form.invalid) {
@@ -52,7 +57,7 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
     const category: Category = {
       _id: this.currentCategoryId,
       name: this.categoryForm.name.value,
-      icon: this.categoryForm.icon.value,
+      icon: this.categoryForm.file.value,
       color: this.categoryForm.color.value
     };
     if (this.editmode) {
@@ -60,7 +65,11 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
     } else {
       this._addCategory(category);
     }
+    console.log(category)
   }
+
+
+
 
   private _UpdateCategory(category: Category) {
     this.categoriesSercice.UpdateCategory(category).pipe(takeUntil(this.endsubs$)).subscribe((response) => {
@@ -89,12 +98,30 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
         this.editmode = true;
         this.categoriesSercice.getCategory(params._id).pipe(takeUntil(this.endsubs$)).subscribe((category) => {
           this.categoryForm.name.setValue(category.name);
-          this.categoryForm.icon.setValue(category.icon);
+          // this.categoryForm.icon.setValue(category.icon);
+          this.imageDisplay = category.icon;
+          this.categoryForm.icon.setValidators([]);
+          this.categoryForm.icon.updateValueAndValidity();
           this.categoryForm.color.setValue(category.color);
         });
       }
     });
   }
+
+
+  onImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+      this.form.patchValue({ icon: file });
+      this.form.get('icon').updateValueAndValidity();
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        this.imageDisplay = fileReader.result;
+      };
+      fileReader.readAsDataURL(file);
+    }
+  }
+
 
   get categoryForm() {
     return this.form.controls;

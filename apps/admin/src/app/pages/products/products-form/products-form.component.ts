@@ -52,6 +52,7 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
       richDescription: [''],
       image: ['', Validators.required],
       isFeatured: [false],
+      midNightDelivery: [false],
     });
   }
 
@@ -81,6 +82,7 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
           this.productForm.description.setValue(product.description);
           this.productForm.richDescription.setValue(product.richDescription);
           this.productForm.isFeatured.setValue(product.isFeatured);
+          this.productForm.midNightDelivery.setValue(product.midNightDelivery);
           this.imageDisplay = product.image;
           this.productForm.image.setValidators([]);
           this.productForm.image.updateValueAndValidity();

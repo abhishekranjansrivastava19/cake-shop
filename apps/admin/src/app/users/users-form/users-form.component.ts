@@ -128,6 +128,7 @@ private _checkEditMode() {
       this.userService.getUser(params._id).pipe(takeUntil(this.endsubs$)).subscribe((user) => {
         this.userForm.name.setValue(user.name);
         this.userForm.email.setValue(user.email);
+        this.userForm.phone.setValue(user.phone);
         this.userForm.isAdmin.setValue(user.isAdmin);
         this.userForm.street.setValue(user.street);
         this.userForm.apartment.setValue(user.apartment);

@@ -12,5 +12,6 @@ export class Product {
   rating? : number;
   numReviews? : number;
   isFeatured? : boolean;
+  midNightDelivery? : boolean;
   dateCreated? : string;
 }

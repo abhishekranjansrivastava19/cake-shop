@@ -56,4 +56,10 @@ export class ProductsService {
       `http://localhost:3000/api/v1/products/get/featured/${count}`
     );
   }
+
+  getMidNightDeliveryProduct(count: number): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      `http://localhost:3000/api/v1/products/get/midNightDelivery/${count}`
+    );
+  }
 }

@@ -11,11 +11,18 @@
       </div>
       <div class="col-6 p-3">
         <h3 style="margin-left: 5px;">Welcome</h3>
-        <h2 style="margin-left: 5px;">Login Page</h2>
+        <h2 style="margin-left: 5px;">SignUp Page</h2>
         <form [formGroup]="loginFormGroup">
           <div class="p-grid mt-5">
             <div class="col-12">
               <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                  <i class="pi pi-user"></i>
+                </span>
+                <input type="text" formControlName="name" id="name" pInputText placeholder="Name" required/>
+              </div>
+
+              <div class="p-inputgroup mt-3">
                 <span class="p-inputgroup-addon">
                   <i class="pi pi-user"></i>
                 </span>
@@ -25,6 +32,14 @@
                 <span *ngIf="loginForm.email.errors.required">Email is required</span>
                 <span *ngIf="loginForm.email.errors.email">Email is invalid</span>
               </small>
+
+              <div class="p-inputgroup mt-3">
+                <span class="p-inputgroup-addon">
+                  <i class="pi pi-phone"></i>
+                </span>
+                <input type="text" formControlName="phone" id="phone" pInputText placeholder="Phone" required/>
+              </div>
+
             </div>
             <div class="col-12">
               <div class="p-inputgroup">
@@ -48,10 +63,11 @@
             <div class="col-12" *ngIf="isSubmitted && authError">
               <small class="p-error">{{authMessage}}</small>
             </div>
-            <h6 class="p-2 text-center">Don't Have An Acount? <a href="/signUp">SignUp Here!</a></h6>
+            <h6 class="p-2 text-center">Already Have An Acount? <a href="/login">Login Here!</a></h6>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+

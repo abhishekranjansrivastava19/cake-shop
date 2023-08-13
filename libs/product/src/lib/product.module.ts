@@ -10,6 +10,7 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { UiGalleryComponent } from './ui-gallery/ui-gallery.component';
+import { MidNightDeliveryComponent } from './mid-night-delivery/mid-night-delivery.component';
 
 const route: Routes = [
   { path: 'products/:productId', component: ProductDetailComponent },
@@ -30,12 +31,14 @@ const route: Routes = [
     ProductSearchComponent,
     ProductItemComponent,
     FeaturedProductComponent,
+    MidNightDeliveryComponent,
     ProductDetailComponent,
     UiGalleryComponent,
   ],
   exports: [
     ProductSearchComponent,
     FeaturedProductComponent,
+    MidNightDeliveryComponent,
     ProductItemComponent,
     ProductDetailComponent,
     UiGalleryComponent,

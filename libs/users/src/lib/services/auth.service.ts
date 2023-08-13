@@ -16,6 +16,10 @@ export class AuthService {
     return this.http.post<User>('http://localhost:3000/api/v1/users/login', {email, password})
   }
 
+  signUp(name: string, phone: string, email: string, password: string): Observable<User> {
+    return this.http.post<User>('http://localhost:3000/api/v1/users/register', {name, phone, email, password})
+  }
+
   logout(){
     this.localstorageService.removeToken();
     this.router.navigate(['/login'])
